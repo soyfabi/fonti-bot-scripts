@@ -1,4 +1,4 @@
-# otc-bot-scripts
+# [https://postimg.cc/ph8f0JB6](https://postimg.cc/ph8f0JB6)
 
 A collection of **OTClient scripts** focused on automation, bots, macros, and useful utilities to enhance the gameplay experience.
 
@@ -26,6 +26,8 @@ Compatibility may vary depending on the OTClient version or fork being used.
 - Tools for automating repetitive tasks
 
 > This repository is currently under development. More scripts and documentation will be added over time.
+
+
 
 ## 📜 License
 
