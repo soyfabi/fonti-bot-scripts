@@ -1,4 +1,4 @@
-# [https://postimg.cc/ph8f0JB6](https://postimg.cc/ph8f0JB6)
+![FontiBot]([https://i.postimg.cc/C1rcxvnS/Gemini-Generated-Image-gvypazgvypazgvyp.jpg](https://i.postimg.cc/C1rcxvnS/Gemini-Generated-Image-gvypazgvypazgvyp.jpg))
 
 A collection of **OTClient scripts** focused on automation, bots, macros, and useful utilities to enhance the gameplay experience.
 
