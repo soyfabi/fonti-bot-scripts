@@ -1,4 +1,8 @@
-![FontiBot]([https://i.postimg.cc/C1rcxvnS/Gemini-Generated-Image-gvypazgvypazgvyp.jpg](https://i.postimg.cc/C1rcxvnS/Gemini-Generated-Image-gvypazgvypazgvyp.jpg))
+<p align="center">
+  <a href="https://postimg.cc/ph8f0JB6">
+    <img src="https://i.postimg.cc/C1rcxvnS/Gemini-Generated-Image-gvypazgvypazgvyp.jpg" alt="FontiBot" width="100%" />
+  </a>
+</p>
 
 A collection of **OTClient scripts** focused on automation, bots, macros, and useful utilities to enhance the gameplay experience.
 
