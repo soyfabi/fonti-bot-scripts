@@ -1,0 +1,479 @@
+{
+  "_warnedMissingTargetBotConfig": false,
+  "BotServerChannel": "fabioner",
+  "combobot": {
+    "attackSpellEnabled": false,
+    "attackLeaderTargetEnabled": true,
+    "onShootEnabled": true,
+    "serverTriggers": true,
+    "followLeaderEnabled": true,
+    "onCastEnabled": false,
+    "commandsEnabled": true,
+    "onSayEnabled": false,
+    "attack": "",
+    "enabled": false,
+    "spell": "",
+    "shootLeader": "Zangano",
+    "attackItemToggle": false,
+    "serverLeaderTarget": true,
+    "serverEnabled": true,
+    "sayPhrase": "",
+    "item": 3155,
+    "serverLeader": "Zangano",
+    "sayLeader": "",
+    "follow": "SERVER LEADER",
+    "castLeader": ""
+  },
+  "extras": {
+    "rope": 9596,
+    "bless": true,
+    "timers": true,
+    "machete": 9596,
+    "separatePm": false,
+    "reUse": false,
+    "gotoMaxDistance": 30,
+    "lootDelay": 200,
+    "holdMwall": true,
+    "checkPlayer": false,
+    "looting": 40,
+    "suppliesControl": false,
+    "killUnder": 1,
+    "joinBot": false,
+    "lootLast": true,
+    "holdMwHot": "F5",
+    "holdWgHot": "F6",
+    "shovel": 9596,
+    "reachable": false,
+    "title": true,
+    "autoOpenDoors": true,
+    "stake": false,
+    "scythe": 9596,
+    "huntRoutes": 50,
+    "oberon": true,
+    "antiKick": true,
+    "talkDelay": 1000,
+    "nextBackpack": true,
+    "useAll": "space",
+    "highlightTarget": true,
+    "height": 0,
+    "pathfinding": true
+  },
+  "_macros": {
+    "": false
+  },
+  "specialDeposit": {
+    "height": 0,
+    "items": [
+
+    ]
+  },
+  "ingame_hotkeys": "\n\n",
+  "caveBot": {
+    "backOffline": false,
+    "backTrainers": false,
+    "forceRefill": false,
+    "backStop": false
+  },
+  "analyzers": {
+    "lootChannel": true,
+    "customPrices": [
+
+    ],
+    "rarityFrames": true,
+    "trackedBoss": [
+
+    ],
+    "outfits": {
+      "Rotworm": {
+        "legs": 0,
+        "addons": 0,
+        "head": 0,
+        "feet": 0,
+        "category": 1,
+        "familiar": 0,
+        "type": 26,
+        "auxType": 0,
+        "mount": 0,
+        "body": 0
+      },
+      "Trainer Monk": {
+        "legs": 0,
+        "addons": 0,
+        "head": 0,
+        "feet": 0,
+        "category": 1,
+        "familiar": 0,
+        "type": 57,
+        "auxType": 0,
+        "mount": 0,
+        "body": 0
+      },
+      "Trainer": {
+        "legs": 0,
+        "addons": 0,
+        "head": 0,
+        "feet": 0,
+        "category": 1,
+        "familiar": 0,
+        "type": 57,
+        "auxType": 0,
+        "mount": 0,
+        "body": 0
+      }
+    },
+    "trackedLoot": [
+
+    ]
+  },
+  "cavebotSell": [
+    {
+      "id": 23544,
+      "count": 1
+    },
+    {
+      "id": 3081,
+      "count": 1
+    }
+  ],
+  "bestHit": 0,
+  "EquipperPanel": {
+    "bosses": [
+
+    ],
+    "enabled": false,
+    "rules": [
+
+    ]
+  },
+  "tabOrder": [
+    "Main",
+    "Cave",
+    "Target",
+    "Tools",
+    "HP"
+  ],
+  "bestHeal": 0,
+  "_configs": {
+    "targetbot_configs": {
+      "enabled": false,
+      "selected": "config_name"
+    },
+    "cavebot_configs": {
+      "selected": "config_name",
+      "enabled": false
+    }
+  },
+  "autoTradeMessage": "I'm using OTClient Redemption!",
+  "Arrows - Editor": {
+    "playerScreen": true,
+    "defaultLeftItem": 3447,
+    "ignorePlayers": "Monaco, Pusher",
+    "monstersCount": 2,
+    "enabled": false,
+    "defaultRightItem": 3449,
+    "defaultCenterItem": 35562
+  },
+  "dropper": {
+    "enabled": false,
+    "trashItems": [
+      {
+        "id": 283,
+        "count": 1
+      },
+      {
+        "id": 284,
+        "count": 1
+      },
+      {
+        "id": 285,
+        "count": 1
+      }
+    ],
+    "useItems": [
+      {
+        "id": 21203,
+        "count": 1
+      },
+      {
+        "id": 14758,
+        "count": 1
+      }
+    ],
+    "capItems": [
+      {
+        "id": 21175,
+        "count": 1
+      }
+    ]
+  },
+  "alarms": {
+    "privateMsg": [
+
+    ],
+    "customMessage": {
+      "value": ""
+    },
+    "flashClient": [
+
+    ],
+    "lowMana": {
+      "value": 20
+    },
+    "creatureDetected": [
+
+    ],
+    "damageTaken": [
+
+    ],
+    "playerAttack": [
+
+    ],
+    "ignoreFriends": [
+
+    ],
+    "defaultMsg": [
+
+    ],
+    "creatureName": {
+      "value": ""
+    },
+    "lowHealth": {
+      "value": 20
+    },
+    "playerDetected": [
+
+    ]
+  },
+  "BOTserver": {
+    "manaInfo": true,
+    "mwallInfo": true,
+    "mwalls": [
+
+    ],
+    "outfit": false,
+    "broadcasts": true,
+    "enabled": false,
+    "vocation": true
+  },
+  "pushmax": {
+    "pushMaxRuneId": 3188,
+    "mwallBlockId": 2128,
+    "pushDelay": 1060,
+    "enabled": false,
+    "pushMaxKey": "PageUp"
+  },
+  "autoEquip": [
+    {
+      "item1": 3052,
+      "title": "Auto Equip",
+      "item2": 3089,
+      "slot": 9,
+      "on": false
+    },
+    {
+      "item1": 0,
+      "title": "Auto Equip",
+      "item2": 0,
+      "slot": 0,
+      "on": false
+    }
+  ],
+  "moneyItems": [
+    {
+      "id": 3031,
+      "count": 1
+    },
+    {
+      "id": 3035,
+      "count": 1
+    }
+  ],
+  "playerList": {
+    "enemyList": [
+
+    ],
+    "outfits": false,
+    "friendList": [
+
+    ],
+    "groupMembers": true,
+    "highlight": false,
+    "blackList": [
+
+    ],
+    "marks": false
+  },
+  "newHealer": {
+    "vocations": [
+
+    ],
+    "conditions": {
+      "sorcerers": false,
+      "knights": true,
+      "friends": false,
+      "monks": true,
+      "paladins": true,
+      "druids": false,
+      "party": true,
+      "guild": false
+    },
+    "enabled": false,
+    "groups": [
+
+    ],
+    "customPlayers": [
+
+    ],
+    "priorities": [
+      {
+        "custom": true,
+        "enabled": false,
+        "name": "Custom Spell"
+      },
+      {
+        "strong": true,
+        "enabled": true,
+        "name": "Exura Gran Sio"
+      },
+      {
+        "normal": true,
+        "enabled": true,
+        "name": "Exura Sio"
+      },
+      {
+        "area": true,
+        "name": "Exura Gran Mas Res",
+        "enabled": true
+      },
+      {
+        "health": true,
+        "enabled": true,
+        "name": "Health Item"
+      },
+      {
+        "mana": true,
+        "name": "Mana Item",
+        "enabled": true
+      }
+    ],
+    "settings": [
+      {
+        "type": "HealItem",
+        "value": 268,
+        "text": "Mana Item "
+      },
+      {
+        "type": "HealScroll",
+        "value": 6,
+        "text": "Item Range: "
+      },
+      {
+        "type": "HealItem",
+        "value": 3160,
+        "text": "Health Item "
+      },
+      {
+        "type": "HealScroll",
+        "value": 2,
+        "text": "Mas Res Players: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 80,
+        "text": "Heal Friend at: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 30,
+        "text": "Use Gran Sio at: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 90,
+        "text": "Min Player HP%: "
+      },
+      {
+        "type": "HealScroll",
+        "value": 30,
+        "text": "Min Player MP%: "
+      }
+    ]
+  },
+  "renameContainers": {
+    "purse": true,
+    "enabled": false,
+    "list": [
+      {
+        "items": [
+          3081,
+          3048
+        ],
+        "value": "Main Backpack",
+        "item": 9601,
+        "min": false,
+        "enabled": true
+      },
+      {
+        "items": [
+          3161,
+          3180
+        ],
+        "value": "Runes",
+        "item": 2866,
+        "min": true,
+        "enabled": true
+      },
+      {
+        "items": [
+          3031,
+          3035,
+          3043
+        ],
+        "value": "Money",
+        "item": 2871,
+        "min": true,
+        "enabled": true
+      },
+      {
+        "items": [
+
+        ],
+        "value": "Purse",
+        "item": 23396,
+        "min": true,
+        "enabled": true
+      }
+    ],
+    "height": 250
+  },
+  "foodItems": [
+    {
+      "id": 3582
+    },
+    {
+      "id": 3577
+    },
+    {
+      "id": 3607
+    },
+    {
+      "id": 3585
+    },
+    {
+      "id": 3592
+    },
+    {
+      "id": 3600
+    },
+    {
+      "id": 3601
+    }
+  ],
+  "caveBotTasker": {
+    "max": 0,
+    "monster": "",
+    "inProgress": false,
+    "count": 0,
+    "taskName": ""
+  }
+}

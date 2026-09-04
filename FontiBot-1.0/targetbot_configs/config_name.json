@@ -1,0 +1,65 @@
+{
+  "looting": {
+    "items": [
+
+    ],
+    "maxDanger": 10,
+    "minCapacity": 100,
+    "containers": [
+
+    ],
+    "everyItem": false
+  },
+  "targeting": [
+    {
+      "useSpellAttack": true,
+      "lureDelay": 250,
+      "lureMin": 0,
+      "anchorRange": 3,
+      "minMana": 200,
+      "avoidAttacks": false,
+      "rePositionAmount": 5,
+      "lureMax": 3,
+      "minManaGroup": 1500,
+      "groupRuneAttackDelay": 5000,
+      "danger": 1,
+      "runeAttackDelay": 2000,
+      "lureCavebot": false,
+      "dontLoot": false,
+      "diamondArrows": false,
+      "delayFrom": 2,
+      "groupRuneAttackRadius": 1,
+      "rePosition": false,
+      "rpSafe": false,
+      "groupAttackIgnorePlayers": false,
+      "faceMonster": false,
+      "closeLure": false,
+      "maxDistance": 10,
+      "groupAttackIgnoreParty": false,
+      "lureCount": 1,
+      "useGroupAttack": false,
+      "groupRuneAttackTargets": 2,
+      "attackSpell": "exori frigo",
+      "groupAttackDelay": 5000,
+      "chase": true,
+      "priority": 1,
+      "groupAttackRune": 0,
+      "useGroupAttackRune": false,
+      "keepDistanceRange": 1,
+      "groupAttackSpell": "",
+      "attackRune": 0,
+      "useRuneAttack": false,
+      "dynamicLureDelay": false,
+      "attackSpellDelay": 2500,
+      "name": "spider",
+      "keepDistance": false,
+      "groupAttackRadius": 1,
+      "lure": false,
+      "anchor": false,
+      "closeLureAmount": 3,
+      "groupAttackTargets": 2,
+      "dynamicLure": false,
+      "regex": "^spider$"
+    }
+  ]
+}

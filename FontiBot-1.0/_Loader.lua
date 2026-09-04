@@ -1,0 +1,63 @@
+-- load all otui files, order doesn't matter
+local configName = modules.game_bot.contentsPanel.config:getCurrentOption().text
+
+local configFiles = g_resources.listDirectoryFiles("/bot/" .. configName .. "/vBot", true, false)
+for i, file in ipairs(configFiles) do
+  local ext = file:split(".")
+  if ext[#ext]:lower() == "ui" or ext[#ext]:lower() == "otui" then
+    g_ui.importStyle(file)
+  end
+end
+
+local function loadScript(name)
+  return dofile("/vBot/" .. name .. ".lua")
+end
+
+-- here you can set manually order of scripts
+-- libraries should be loaded first
+local luaFiles = {
+  "items",
+  "vlib",
+  "new_cavebot_lib",
+  "configs", -- do not change this and above
+  "cavebot", -- before extras: Skin Monsters / macros call CaveBot.isOn()
+  "extras",
+  "playerlist",
+  "BotServer",
+  "alarms",
+  "Conditions",
+  "Equipper",
+  "combo",
+  "HealBot",
+  "new_healer",
+  "AttackBot", -- last of major modules
+  "ingame_editor",
+  "Dropper",
+  "Containers",
+  "quiver_manager",
+  "tools",
+  "antiRs",
+  "depot_withdraw",
+  "eat_food",
+  "cast_food",
+  "equip",
+  "exeta",
+  "spy_level",
+  "supplies",
+  "depositer_config",
+  "npc_talk",
+  "xeno_menu",
+  "hold_target",
+  "cavebot_control_panel"
+}
+
+for i, file in ipairs(luaFiles) do
+  local status, err = pcall(function()
+    loadScript(file)
+  end)
+  if not status then
+    warn("[vBot] Failed to load " .. file .. ".lua:\n" .. tostring(err))
+  end
+end
+
+setDefaultTab("Main")
