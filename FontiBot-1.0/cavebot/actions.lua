@@ -45,7 +45,7 @@ onTextMessage(function(mode, text)
   local tiles = getNearTiles(pos())
 
   for i, tile in ipairs(tiles) do
-    if not tile:hasCreatures() and tile:isWalkable() and #tile:getItems() > 9 then
+    if #tile:getCreatures() == 0 and tile:isWalkable() and #tile:getItems() > 9 then
       local topThing = tile:getTopThing()
       if not isInPz() then
         return useWith(3197, tile:getTopThing()) -- disintegrate
@@ -381,6 +381,15 @@ CaveBot.registerAction("goto", "green", function(value, retries, prev)
 
   local precision = tonumber(pos[1][5])
   pos = {x=tonumber(pos[1][2]), y=tonumber(pos[1][3]), z=tonumber(pos[1][4])}
+  if CaveBot.updateGotoMarker then
+    CaveBot.updateGotoMarker()
+  elseif CaveBot.isHudOn and CaveBot.isHudOn() then
+    local gotoTile = g_map.getTile(pos)
+    if gotoTile then
+      gotoTile:setText("@ POS: (" .. pos.x .. ", " .. pos.y .. ", " .. pos.z .. ")", "#00FF00")
+      CaveBot.gotoMarkerTile = gotoTile
+    end
+  end
   local playerPos = player:getPosition()
   if pos.z ~= playerPos.z then
     noPath = noPath + 1
@@ -433,7 +442,7 @@ CaveBot.registerAction("goto", "green", function(value, retries, prev)
 
       local tile = g_map.getTile(nextPos)
       if tile then
-          if tile:hasCreatures() then
+              if #tile:getCreatures() > 0 then
               local creature = tile:getCreatures()[1]
               local hppc = creature:getHealthPercent()
               if creature:isMonster() and (hppc and hppc > 0) and (oldTibia or creature:getType() < 3) then

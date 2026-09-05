@@ -10,8 +10,208 @@ if not ui or not ui.listPanel then
   error("CaveBotPanel UI failed to load. Check /cavebot/cavebot.otui was imported.")
 end
 
+local cavebotPositionLabel = setupUI([[
+Label
+  height: 18
+  text: Pos: -
+  color: #FFFF00
+  font: verdana-11px-rounded
+]])
+cavebotPositionLabel:setParent(g_ui.getRootWidget())
+cavebotPositionLabel:setPosition({x = 12, y = 42})
+local lastMarkedTile = nil
+local lastMarkedPos = nil
+local markedAllPositions = {}
+
+local function clearGotoMarker()
+  if lastMarkedTile then
+    pcall(function() lastMarkedTile:setText("") end)
+    lastMarkedTile = nil
+  end
+  if CaveBot.gotoMarkerTile then
+    pcall(function() CaveBot.gotoMarkerTile:setText("") end)
+    CaveBot.gotoMarkerTile = nil
+  end
+  lastMarkedPos = nil
+end
+
+local function clearAllMarkers()
+  for _, pos in pairs(markedAllPositions) do
+    local tile = g_map.getTile(pos)
+    if tile then
+      pcall(function() tile:setText("") end)
+    end
+  end
+  markedAllPositions = {}
+  clearGotoMarker()
+end
+
+local function parseGotoPos(val)
+  if not val or type(val) ~= "string" then return nil end
+  local parts = string.split(val, ",")
+  if parts and #parts >= 3 then
+    local x = tonumber(parts[1]:trim())
+    local y = tonumber(parts[2]:trim())
+    local z = tonumber(parts[3]:trim())
+    if x and y and z then
+      return {x = x, y = y, z = z}
+    end
+  end
+  local x, y, z = string.match(val, "%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)")
+  if x and y and z then
+    return {x = tonumber(x), y = tonumber(y), z = tonumber(z)}
+  end
+  return nil
+end
+
+local function getActionDisplayId(actionWidget)
+  if not actionWidget then return 1 end
+  if actionWidget.actionId then
+    return actionWidget.actionId
+  end
+  local text = actionWidget:getText() or ""
+  local idFromText = string.match(text, "^(%d+)%.")
+  if idFromText then
+    return tonumber(idFromText)
+  end
+  if ui and ui.list then
+    return ui.list:getChildIndex(actionWidget) + 1
+  end
+  return 1
+end
+
+local function updateGotoMarker()
+  if not g_game.isOnline() then
+    clearAllMarkers()
+    return
+  end
+  if not ui or not ui.list then return end
+
+  local hudState = storage._cavebotHudState or 0
+
+  -- State 0: OFF / Hidden
+  if hudState == 0 then
+    clearAllMarkers()
+    if cavebotPositionLabel and cavebotPositionLabel:isVisible() then
+      cavebotPositionLabel:hide()
+    end
+    return
+  end
+
+  -- States 1 and 2: HUD is visible
+  if cavebotPositionLabel and not cavebotPositionLabel:isVisible() then
+    cavebotPositionLabel:show()
+  end
+
+  local currentAction = ui.list:getFocusedChild()
+  if not currentAction then
+    currentAction = ui.list:getFirstChild()
+  end
+
+  if currentAction then
+    local currentId = getActionDisplayId(currentAction)
+    local actionText = currentAction:getText() or ""
+    cavebotPositionLabel:setText("Pos: " .. currentId .. " | " .. actionText)
+  else
+    cavebotPositionLabel:setText("Pos: -")
+  end
+
+  local playerPos = player and player:getPosition()
+
+  -- State 2: Show ALL waypoints on current floor
+  if hudState == 2 then
+    if lastMarkedTile or lastMarkedPos then
+      clearGotoMarker()
+    end
+    local currentPositions = {}
+    for _, child in ipairs(ui.list:getChildren()) do
+      if child.action == "goto" then
+        local targetPos = parseGotoPos(child.value)
+        if targetPos and (not playerPos or playerPos.z == targetPos.z) then
+          local key = targetPos.x .. "," .. targetPos.y .. "," .. targetPos.z
+          currentPositions[key] = targetPos
+          local tile = g_map.getTile(targetPos)
+          if tile then
+            local currentId = getActionDisplayId(child)
+            local markerText = "@ POS: " .. currentId .. " (" .. targetPos.x .. ", " .. targetPos.y .. ", " .. targetPos.z .. ")"
+            tile:setText(markerText, "#00FF00")
+          end
+        end
+      end
+    end
+
+    for oldKey, oldPos in pairs(markedAllPositions) do
+      if not currentPositions[oldKey] then
+        local oldTile = g_map.getTile(oldPos)
+        if oldTile then
+          pcall(function() oldTile:setText("") end)
+        end
+      end
+    end
+    markedAllPositions = currentPositions
+    return
+  end
+
+  -- State 1: Show only SELECTED waypoint
+  for oldKey, oldPos in pairs(markedAllPositions) do
+    local oldTile = g_map.getTile(oldPos)
+    if oldTile then
+      pcall(function() oldTile:setText("") end)
+    end
+  end
+  markedAllPositions = {}
+
+  if not currentAction or currentAction.action ~= "goto" then
+    clearGotoMarker()
+    return
+  end
+
+  local targetPos = parseGotoPos(currentAction.value)
+  if not targetPos then
+    clearGotoMarker()
+    return
+  end
+
+  local currentId = getActionDisplayId(currentAction)
+
+  if lastMarkedPos and (lastMarkedPos.x ~= targetPos.x or lastMarkedPos.y ~= targetPos.y or lastMarkedPos.z ~= targetPos.z) then
+    clearGotoMarker()
+  end
+
+  if playerPos and playerPos.z ~= targetPos.z then
+    clearGotoMarker()
+    lastMarkedPos = targetPos
+    return
+  end
+
+  local tile = g_map.getTile(targetPos)
+  if tile then
+    local markerText = "@ POS: " .. currentId .. " (" .. targetPos.x .. ", " .. targetPos.y .. ", " .. targetPos.z .. ")"
+    tile:setText(markerText, "#00FF00")
+    lastMarkedTile = tile
+    CaveBot.gotoMarkerTile = tile
+    lastMarkedPos = targetPos
+  end
+end
+
+CaveBot.updateGotoMarker = updateGotoMarker
+CaveBot.clearGotoMarker = clearGotoMarker
+CaveBot.clearAllMarkers = clearAllMarkers
+
 ui.list = ui.listPanel.list -- shortcut
 CaveBot.actionList = ui.list
+
+ui.list.onChildFocusChange = function(widget, newChild, oldChild)
+  if (storage._cavebotHudState or 0) == 1 then
+    clearGotoMarker()
+  end
+  updateGotoMarker()
+end
+
+-- Macro to keep marking the selected waypoint and updating HUD even when CaveBot is off
+macro(100, function()
+  updateGotoMarker()
+end)
 
 if CaveBot.Editor then
   CaveBot.Editor.setup()
@@ -44,7 +244,14 @@ cavebotMacro = macro(20, function()
   if not currentAction then
     currentAction = ui.list:getFirstChild()
   end
+  if currentAction then
+    updateGotoMarker()
+  else
+    cavebotPositionLabel:setText("Pos: -")
+    clearGotoMarker()
+  end
   local action = CaveBot.Actions[currentAction.action]
+  CaveBot.currentAction = currentAction
   local value = currentAction.value
   local retry = false
   if action then
@@ -97,6 +304,7 @@ config = Config.setup("cavebot_configs", configWidget, "cfg", function(name, ena
 
   local currentActionIndex = ui.list:getChildIndex(ui.list:getFocusedChild())
   ui.list:destroyChildren()
+  clearAllMarkers()
   if not data then return cavebotMacro.setOff() end
 
   local cavebotConfig = nil
@@ -167,6 +375,59 @@ ui.showConfig.onClick = function()
   end
 end
 
+local function updateHudButtonText()
+  if not ui or not ui.showHud then return end
+  local state = storage._cavebotHudState or 1
+  if state == 1 then
+    ui.showHud:setText("Show HUD")
+  elseif state == 2 then
+    ui.showHud:setText("Show HUD (All)")
+  else
+    ui.showHud:setText("Hide HUD")
+  end
+end
+
+if ui.showHud then
+  if storage._cavebotHudState == nil then
+    storage._cavebotHudState = 1
+  end
+
+  updateHudButtonText()
+
+  if storage._cavebotHudState == 0 and cavebotPositionLabel then
+    cavebotPositionLabel:hide()
+  end
+
+  ui.showHud.onClick = function()
+    local currentState = storage._cavebotHudState or 1
+    local nextState = 1
+    if currentState == 1 then
+      nextState = 2
+    elseif currentState == 2 then
+      nextState = 0
+    else
+      nextState = 1
+    end
+    storage._cavebotHudState = nextState
+    updateHudButtonText()
+    if nextState == 0 then
+      clearAllMarkers()
+      if cavebotPositionLabel then
+        cavebotPositionLabel:hide()
+      end
+    else
+      if cavebotPositionLabel then
+        cavebotPositionLabel:show()
+      end
+      updateGotoMarker()
+    end
+  end
+end
+
+CaveBot.isHudOn = function()
+  return (storage._cavebotHudState or 0) > 0
+end
+
 -- public function, you can use them in your scripts
 CaveBot.isOn = function()
   return config.isOn()
@@ -188,6 +449,17 @@ CaveBot.setOff = function(val)
     return CaveBot.setOn(true)
   end
   config.setOff()
+  schedule(50, function()
+    local selected = ui.list:getFocusedChild() or ui.list:getFirstChild()
+    if selected then
+      local gotoNumber = 0
+      for _, child in ipairs(ui.list:getChildren()) do
+        if child.action == "goto" then gotoNumber = gotoNumber + 1 end
+        if child == selected then break end
+      end
+      updateGotoMarker(selected, gotoNumber)
+    end
+  end)
 end
 
 CaveBot.getCurrentProfile = function()

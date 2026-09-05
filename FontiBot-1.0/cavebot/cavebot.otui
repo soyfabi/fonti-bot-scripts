@@ -60,3 +60,8 @@ CaveBotPanel < Panel
 
     $!on:
       text: Show config
+
+  BotButton
+    id: showHud
+    margin-top: 2
+    text: Show HUD

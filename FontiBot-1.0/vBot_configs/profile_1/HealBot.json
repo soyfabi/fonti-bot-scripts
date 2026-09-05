@@ -6,108 +6,116 @@
     "ignoreInPz": true,
     "bleedCost": 45,
     "cureCurse": false,
-    "holdHaste": false,
+    "holdHaste": true,
     "curePosion": false,
     "hasteSpell": "utani hur",
-    "cureParalyse": false,
-    "stopHaste": false,
+    "uturaType": "",
+    "burnCost": 30,
     "cureBleed": false,
     "holdUtura": false,
     "paralyseSpell": "utani hur",
-    "uturaType": "",
-    "utanaCost": 440,
+    "hasteCost": 40,
+    "cureParalyse": false,
     "poisonCost": 20,
     "utamoCost": 40,
-    "enabled": false,
+    "enabled": true,
     "uturaCost": 100,
     "cureElectrify": false,
     "holdUtamo": false,
     "paralyseCost": 40,
-    "hasteCost": 40,
+    "utanaCost": 440,
     "holdUtana": false,
-    "burnCost": 30
+    "stopHaste": false
   },
   "currentHealBotProfile": 1,
   "healbot": [
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "Delay": true,
-      "itemTable": [
-
-      ],
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
-
+        {
+          "enabled": true,
+          "index": 1,
+          "origin": "HP%",
+          "spell": "exura gran",
+          "sign": "<",
+          "value": 90,
+          "cost": 0
+        }
       ],
-      "enabled": false,
+      "enabled": true,
       "name": "Profile #1",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "Delay": true,
-      "itemTable": [
-
-      ],
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #2",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "Delay": true,
-      "itemTable": [
-
-      ],
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #3",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "Delay": true,
-      "itemTable": [
-
-      ],
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #4",
-      "Interval": true
+      "itemTable": [
+
+      ]
     },
     {
       "MessageDelay": false,
-      "Conditions": true,
-      "Delay": true,
-      "itemTable": [
-
-      ],
       "Visible": true,
+      "Interval": true,
+      "Delay": true,
+      "Conditions": true,
       "Cooldown": true,
       "spellTable": [
 
       ],
       "enabled": false,
       "name": "Profile #5",
-      "Interval": true
+      "itemTable": [
+
+      ]
     }
   ]
 }
